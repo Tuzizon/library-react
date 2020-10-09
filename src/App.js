@@ -19,10 +19,10 @@ function App() {
   const [books, setBooks] = useState([]);
   const [allBooks, setAllBooks] = useState([]);
   const [saveForm, setSaveForm] = useState({
-    title: undefined,
-    author: undefined,
-    gender: undefined,
-    year: undefined,
+    title: '',
+    author: '',
+    gender: '',
+    year: '',
   });
   const [saveModal, setSaveModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -56,17 +56,11 @@ function App() {
           .then();
         setIsEdit(false);
         setSaveModal(false);
+        clearForm();
         setTimeout(() => {
           findAll();
           setLoading(false);
         }, 500);
-        setSaveForm({
-          id: undefined,
-          title: undefined,
-          author: undefined,
-          gender: undefined,
-          year: undefined,
-        });
       } else {
         setLoading(true);
         const book = {
@@ -84,6 +78,7 @@ function App() {
           .then((response) => response.text())
           .then();
         setSaveModal(false);
+        clearForm();
         setTimeout(() => {
           findAll();
           setLoading(false);
@@ -98,6 +93,16 @@ function App() {
     setSaveModal(!saveModal);
     setIsEdit(false);
   };
+
+  const clearForm = async () => {
+    setSaveForm({
+      id: '',
+      title: '',
+      author: '',
+      gender: '',
+      year: '',
+    });
+  }
 
   const findAll = async () => {
     fetch("https://library-arthur.herokuapp.com/books")
