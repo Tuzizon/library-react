@@ -3,7 +3,6 @@ import './App.css';
 import BookTable from './components/table/table'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Container, Row, Col, Navbar } from 'reactstrap';
 import { SearchBox } from './components/search-box/search-box'
-import logo from './logo.svg'
 import Loader from 'react-loader-spinner';
 
 function App() {
